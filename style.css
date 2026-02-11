@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+}
+
+#gameBoard {
+  width: 400px;
+  height: 400px;
+  margin: 20px auto;
+  background-color: #222;
+  display: grid;
+  grid-template-columns: repeat(20, 20px);
+  grid-template-rows: repeat(20, 20px);
+  border: 2px solid #000;
+  position: relative;
+}
+
+.snake {
+  background-color: lime;
+}
+
+.food {
+  background-color: red;
+}
+
+h1 {
+  color: #333;
+}
