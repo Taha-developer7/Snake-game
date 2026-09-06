@@ -1,31 +1,20 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 20px;
-}
-
-#gameBoard {
-  width: 400px;
-  height: 400px;
-  margin: 20px auto;
-  background-color: #222;
-  display: grid;
-  grid-template-columns: repeat(20, 20px);
-  grid-template-rows: repeat(20, 20px);
-  border: 2px solid #000;
-  position: relative;
-}
-
-.snake {
-  background-color: lime;
-}
-
-.food {
-  background-color: red;
-}
-
-h1 {
-  color: #333;
-}
+:root { --ink: #171717; --paper: #f4f1e9; --orange: #ff5b35; --yellow: #f7d45a; --line: #d7d1c4; --board: #292a25; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; color: var(--ink); background: var(--paper); font-family: Georgia, 'Times New Roman', serif; }
+button, input { font: inherit; } button { cursor: pointer; }
+.app-shell { width: min(1180px, calc(100% - 48px)); margin: auto; min-height: 100vh; display: flex; flex-direction: column; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.brand { display: flex; gap: 12px; align-items: center; color: inherit; text-decoration: none; font: 700 13px/1.1 Arial, sans-serif; letter-spacing: .15em; }
+.brand span span { display: block; color: var(--orange); }.brand-mark { width: 28px; height: 28px; border: 2px solid var(--ink); display: grid; place-items: center; font: 28px/22px Arial; }
+.topbar-actions { display: flex; align-items: center; gap: 30px; font: 11px Arial, sans-serif; text-transform: uppercase; letter-spacing: .1em; }.status-dot, .live-label { display: flex; align-items: center; gap: 8px; }.status-dot i, .live-label i { width: 7px; height: 7px; background: #51ad73; border-radius: 50%; display: block; }
+.account-button, .guest-button { background: none; border: 0; color: inherit; font: 700 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: .08em; }.button-arrow { color: var(--orange); font-size: 16px; margin-left: 5px; }
+.game-layout { flex: 1; display: grid; grid-template-columns: 1fr minmax(420px, 580px); gap: 100px; align-items: center; padding: 72px 0 52px; }
+.eyebrow { margin: 0 0 23px; font: 700 11px Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--orange); } h1 { font-size: clamp(52px, 7vw, 86px); font-weight: 400; letter-spacing: -.06em; line-height: .88; margin: 0 0 28px; } h1 em { color: var(--orange); font-style: normal; }
+.intro-copy { max-width: 300px; color: #69645b; font-size: 16px; line-height: 1.5; margin: 0 0 52px; }.stats-row { display: flex; gap: 44px; border-top: 1px solid var(--line); padding-top: 18px; max-width: 330px; }.stat span { display: block; color: #8e887c; font: 10px Arial, sans-serif; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 7px; }.stat strong { font-size: 29px; font-weight: 400; }.tip { display: flex; gap: 12px; margin-top: 72px; color: #777167; font: 11px/1.5 Arial, sans-serif; }.tip b { color: var(--ink); font-weight: 700; }.tip-icon { color: var(--orange); font-size: 25px; line-height: 18px; }
+.game-panel { background: #e9e4d9; padding: 23px; box-shadow: 10px 10px 0 rgba(23,23,23,.08); }.game-panel-header, .footer { display: flex; justify-content: space-between; font: 10px Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }.game-panel-header { margin-bottom: 16px; }.game-panel-header b { color: var(--orange); font-weight: 400; }.live-label { color: #777167; }.live-label i { width: 5px; height: 5px; }
+#gameBoard { aspect-ratio: 1; width: 100%; display: grid; grid-template-columns: repeat(20, 1fr); background-color: var(--board); padding: 10px; border: 1px solid #45453e; } #gameBoard div { min-width: 0; }.snake { background: var(--yellow); }.head { background: var(--orange); }.food { background: #fbf5da; border-radius: 50%; transform: scale(.55); }
+.game-controls { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; }.control-button { border: 0; background: none; color: #777167; font: 10px Arial; letter-spacing: .1em; text-transform: uppercase; }.control-button span { border: 1px solid #bdb6a8; padding: 5px 7px; margin-left: 7px; }.direction-pad { display: grid; grid-template-columns: repeat(3, 30px); gap: 3px; }.direction-pad button { width: 30px; height: 26px; border: 1px solid #c9c1b1; background: transparent; color: var(--ink); }.direction-pad button:first-child { grid-column: 2; }.direction-pad button:nth-child(2) { grid-column: 1; grid-row: 2; }.direction-pad button:nth-child(3) { grid-column: 2; grid-row: 2; }.direction-pad button:nth-child(4) { grid-column: 3; grid-row: 2; }
+.footer { border-top: 1px solid var(--line); padding: 18px 0 23px; color: #8e887c; }.footer b { color: var(--orange); font-size: 16px; }
+.modal-backdrop { position: fixed; inset: 0; background: rgba(23,23,23,.48); display: grid; place-items: center; padding: 20px; z-index: 2; }.modal-backdrop[hidden] { display: none; }.account-modal { position: relative; width: min(100%, 430px); background: var(--paper); padding: 40px; box-shadow: 12px 12px 0 rgba(23,23,23,.18); }.modal-close { position: absolute; top: 18px; right: 20px; border: 0; background: none; font-size: 25px; }.account-modal h2 { margin: 0 0 10px; font-size: 42px; font-weight: 400; letter-spacing: -.04em; }.modal-copy { color: #777167; font: 14px/1.5 Arial, sans-serif; margin: 0 0 25px; }.account-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }.account-tabs button { background: none; border: 0; padding: 0 0 10px; color: #999083; font: 11px Arial; text-transform: uppercase; letter-spacing: .1em; }.account-tabs button.active { color: var(--orange); border-bottom: 2px solid var(--orange); }.account-modal label { display: block; margin: 15px 0 7px; font: 10px Arial; text-transform: uppercase; letter-spacing: .12em; }.account-modal input { width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid #aaa293; background: transparent; outline: none; }.account-modal input:focus { border-color: var(--orange); }.form-message { min-height: 18px; color: var(--orange); font: 11px Arial; }.submit-button { width: 100%; margin-top: 6px; border: 0; padding: 15px; background: var(--orange); color: white; font: 700 11px Arial; text-transform: uppercase; letter-spacing: .1em; }.submit-button span { float: right; font-size: 16px; }.guest-button { display: block; margin: 22px auto 0; color: #8e887c; font-size: 10px; }
+@media (max-width: 800px) { .app-shell { width: min(100% - 30px, 580px); }.status-dot { display: none; }.game-layout { display: flex; flex-direction: column; gap: 44px; padding: 52px 0 38px; align-items: stretch; }.intro-copy { margin-bottom: 30px; }.tip { margin-top: 35px; } h1 { font-size: clamp(48px, 15vw, 72px); } }
+@media (max-width: 420px) { .account-modal { padding: 30px 24px; }.game-panel { padding: 15px; }.topbar { padding: 20px 0; }.topbar-actions { gap: 0; } }

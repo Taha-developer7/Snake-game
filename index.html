@@ -3,14 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snake Game</title>
+  <title>Neon Snake | Arcade</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <h1>Snake Game</h1>
-  <p>Score: <span id="score">0</span></p>
-  <div id="gameBoard"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Neon Snake home"><span class="brand-mark">+</span><span>NEON<span>SNAKE</span></span></a>
+      <div class="topbar-actions"><span class="status-dot"><i></i> Live arcade</span><button class="account-button" id="accountButton" type="button">Sign in <span class="button-arrow">↗</span></button></div>
+    </header>
+    <main class="game-layout">
+      <section class="intro-panel"><p class="eyebrow">Classic mode / 01</p><h1>Stay sharp.<br><em>Keep growing.</em></h1><p class="intro-copy">A clean, fast arcade run. Eat the light, own the grid, and chase your personal best.</p><div class="stats-row"><div class="stat"><span>Current score</span><strong id="score">0</strong></div><div class="stat"><span>Personal best</span><strong id="bestScore">0</strong></div></div><div class="tip"><span class="tip-icon">⌁</span><span>Use arrow keys or WASD<br><b>to navigate the grid</b></span></div></section>
+      <section class="game-panel" aria-label="Snake game"><div class="game-panel-header"><span>RUN <b>001</b></span><span class="live-label"><i></i> READY</span></div><div id="gameBoard" role="application" aria-label="Snake game board"></div><div class="game-controls"><button class="control-button" id="restartButton" type="button">Restart <span>R</span></button><div class="direction-pad" aria-label="Touch controls"><button type="button" data-direction="up" aria-label="Move up">↑</button><button type="button" data-direction="left" aria-label="Move left">←</button><button type="button" data-direction="down" aria-label="Move down">↓</button><button type="button" data-direction="right" aria-label="Move right">→</button></div></div></section>
+    </main>
+    <footer class="footer"><span>NEON SNAKE / EST. 2024</span><span>Build your streak <b>↗</b></span></footer>
+  </div>
+  <div class="modal-backdrop" id="accountModal" hidden><section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeModal" type="button" aria-label="Close">×</button><p class="eyebrow">Arcade access</p><h2 id="modalTitle">Welcome back.</h2><p class="modal-copy" id="modalCopy">Sign in to keep your best runs attached to your name.</p><div class="account-tabs"><button class="active" id="signInTab" type="button">Sign in</button><button id="createTab" type="button">Create account</button></div><form id="accountForm"><label for="username">Username</label><input id="username" name="username" type="text" autocomplete="username" placeholder="e.g. gridmaster" required minlength="2"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required minlength="4"><p class="form-message" id="formMessage" role="status"></p><button class="submit-button" type="submit" id="submitAccount">Enter the arcade <span>↗</span></button></form><button class="guest-button" id="guestButton" type="button">Continue as guest</button></section></div>
   <script src="script.js"></script>
 </body>
 </html>
